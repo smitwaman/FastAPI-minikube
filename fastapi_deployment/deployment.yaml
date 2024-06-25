@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment
+  namespace: fastapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+        - name: fastapi-app
+          image: smitwaman/fastapi:v1
+          ports:
+            - containerPort: 9009
+          resources:
+            limits:
+              cpu: "0.5" # Set CPU limit (adjust as needed)
+              memory: "256Mi" # Set memory limit (adjust as needed)
+
